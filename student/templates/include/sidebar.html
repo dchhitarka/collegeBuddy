@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<header class="sidebar">
+        <nav class="navbar">
+            <div class="nav-top">
+            {%if user.is_authenticated%}
+                <div class="auth">
+                    <div class="profile-disp">
+                        <!-- <div class="profile-text"> -->
+                            <!-- {{user.first_name.0}}{{user.last_name.0}} -->
+                        <!-- </div> -->
+                        {# if not user.profile_img #}
+                            <img class="profile-img" src="{% static 'images/default-profile-picture.png' %}" alt="Profile Picture">
+                        {# else #}
+                            <!-- <img class="profile-img" src="" alt="Profile Picture"> -->
+                        <!-- {# endif #} -->
+                    </div>
+                    <div class="profile-desc"> 
+                        <a href="{%url 'dashboard'%}" class="profile-link">{{user.first_name}} {{user.last_name}}</a>
+                    </div>
+                </div>
+            {%else%}
+                <div class="auth"> 
+                    <a href="{%url 'login'%}" class="auth-link">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </a>
+                    <a href="{%url 'register'%}" class="auth-link">
+                        <i class="far fa-plus-square"></i>
+                        <span>Join</span>
+                    </a>
+                </div>
+                {%endif%}
+                <span class="menu i-cross" onclick="hideSide()"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="white-line"></div>
+            <ul class="nav-list">
+                <a href="{% url 'index' %}"><li class="nav-item"><i class="fas fa-home"></i>Home</li></a>
+                <a href="{% url 'timetable' %}"><li class="nav-item"><i class="far fa-calendar-alt"></i>Timetable</li></a>
+                <a href="{% url 'attendance' %}"><li class="nav-item"><i class="far fa-address-book"></i>Attendance</li></a>
+                <a href="{% url 'tasks' %}"><li class="nav-item"><i class="fas fa-tasks"></i>Your Tasks</li></a>
+                <a href="{% url 'notes' %}"><li class="nav-item"><i class="far fa-clipboard"></i>Notes</li></a>
+                <a href="{% url 'community' %}"><li class="nav-item"><i class="far fa-comments"></i>Community</li></a>
+                <a href="{% url 'market' %}"><li class="nav-item"><i class="fas fa-shopping-cart"></i>Market</li></a>
+                <a href="{% url 'settings' %}"><li class="nav-item"><i class="far fa-question-circle"></i>Exam</li></a>
+                <a href="{% url 'settings' %}"><li class="nav-item"><i class="far fa-sun"></i>Settings</li></a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}"><li class="nav-item"><i class="far fa-user"></i>Profile</li></a>
+                <a href="{% url 'logout' %}"><li class="nav-item"><i class="fas fa-sign-out-alt"></i>Logout</li></a>
+            {%endif%}
+            </ul>
+        </nav>
+    </header>
+    

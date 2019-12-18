@@ -1,0 +1,32 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+
+{% block title %}Edit Your Note{%endblock%}
+
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/notes.css'%}">
+{% endblock %}
+
+{%block topbarTitle%}
+    <div class="logo"><a href="{% url 'notes' %}">Notes</a></div>
+{%endblock%}
+
+{% block body %}
+    <form class="new-note" method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" id="title" placeholder="Title" value="{{note.title}}">
+            <!--CKEditor Using installed Packages  -->
+        <div id="editor">
+            {{form.media}}
+            {%for field in form.visible_fields%}
+                <div class="post-content">{{field}}</div>
+            {%endfor%}
+        </div>
+        <label for="color" id="labelColor">Color - 
+            <input type="color" name="color" id="color" placeholder="Select a Color" value="{{note.color}}">
+        </label>
+        <input type="submit" value="Save" name="save" id="save">
+    </form>
+    <a href="{% url 'deleteNote' note.id%}" class="delLink"><button id="delete" onclick="alert('Do you really want to delete this note?')">Delete</button></a>
+
+{%endblock%}

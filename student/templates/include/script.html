@@ -1,0 +1,41 @@
+    {% load static %}
+    <script>
+        // Config.js File 
+        var config = {	
+            set_data: function(data) {
+                localStorage.setItem('config_data', data);
+            },
+            
+            load_data: function() {
+                if(localStorage.getItem('config_data') != null){
+                    let data = localStorage.getItem('config_data')
+                    config.data = JSON.parse(data);
+                }
+                else{
+                    data = JSON.stringify({{timetable.timetable|safe}});
+                    if (data != null || data != '') {
+                        config.data = JSON.parse(data);
+                        localStorage.setItem("config_data", JSON.stringify(config.data));
+                    }
+                }
+            },
+
+            save_data: function(new_data) {
+                localStorage.setItem("config_data", JSON.stringify(new_data));
+                fetch(`http://127.0.0.1:8000/timetable/save?data=${JSON.stringify(new_data)}`)
+                .then(res => res.json())
+                .then(data => {
+                    config.data = JSON.parse(Data);
+                    alert("Timetable Updated Successfully! Refresh to see new Timetable.")
+                });
+            },
+
+            reset_data: function() {
+                localStorage.removeItem("config_data");
+            },
+        } //Config Object
+    
+    </script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script> -->
+    <!-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> -->

@@ -1,0 +1,33 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{%block title%}Community Forum - Posts{% endblock %}
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/community.css'%}">
+{% endblock %}
+{%block topbarTitle%}
+<div class="logo"><a href="{% url 'community' %}">Community Forum</a></div>
+{%endblock%}
+{% block body %}
+{% include 'community/forumheader.html' %}
+{%for post in posts%}
+    <a href="#"><li class="topic-info">{{post.post_name}}</li></a>
+{%endfor%}
+<!-- Pagination -->
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ posts.previous_page_number }}"><<</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">>></a>
+            <a href="?page={{ posts.paginator.num_pages }}">{{ posts.paginator.num_pages }} &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+
+{% block title %}Edit Your Task{%endblock%}
+
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/notes.css'%}">
+{% endblock %}
+
+{%block topbarTitle%}
+    <div class="logo"><a href="{% url 'tasks' %}">Your Tasks</a></div>
+{%endblock%}
+
+{% block body %}
+    <form class="new-note" method="POST">
+        {% csrf_token %}
+        <textarea name="task" id="task" placeholder="Task" rows="5" cols="20" value="{{task.tasks}}"></textarea>
+        <label for="color" id="labelColor">Color - 
+            <input type="color" name="color" id="color" placeholder="Select a Color" value="{{task.color}}">
+        </label>
+        <input type="submit" value="Save" name="save" id="save">
+    </form>
+    <a href="{% url 'deleteTask' task.id%}" class="delLink"><button id="delete" onclick="alert('Do you really want to delete this note?')">Delete</button></a>
+
+{%endblock%}

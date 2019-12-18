@@ -1,0 +1,15 @@
+{
+    "name": "College Buddy",
+    "short_name": "CB",
+    "icons": [
+        {
+            "src": "../images/icon.png",
+            "type": "image/png",
+            "sizes": "65x65"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#EEE"
+}

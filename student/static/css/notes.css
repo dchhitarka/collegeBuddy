@@ -1,0 +1,93 @@
+.create-note{
+    display: flex;
+    justify-content: center;
+}
+    .new-note-button{
+        border: 1px solid blue;
+        padding: 5px;
+        border-radius: 3px;
+        background: none;
+        color: blue;
+    }
+    .new-note-button:hover{
+        background-color: blue;
+        color: white;
+    }
+
+.notes{
+    display: flex;
+    list-style: none;
+    margin: 12px 7px;
+}
+    .note{
+        display: flex;
+        flex-direction: column;
+        padding: 7px;
+        margin: 7px;
+        border-radius: 3px;
+        width: 350px;
+        cursor: pointer; 
+        transition: transform .2s;
+    }
+    .note:hover{
+        /* transform: scale(1.002); */
+        overflow-y: hidden;
+    }
+
+/* Edit And New Note Form */
+.new-note{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    justify-content: center;
+    margin: auto;
+}
+    #title{
+        color: white;
+        background: #121212;
+        border: none;
+        border-radius: 3px;
+        padding: 5px;
+        margin-bottom: 5px;
+        outline: none;
+        font-size: 17px;
+    }
+    .post-content{
+        overflow-x: scroll;
+        background-color: #121212;
+        text-align: center;
+    }
+    #labelColor{
+        width: 100%;
+        margin: 7px;
+        padding: 3px;
+        background-color: #121212;
+    }
+        #color{
+            margin-top: 3px;
+            border: 1px solid white;
+            width: 75%;
+        }
+#save, #delete, #create{
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+#create{
+    background: blue;
+}
+#save{
+    background: green;
+}
+#delete{
+    background-color: red;
+    width: 100%;
+}
+.delLink{
+    display: flex;
+    justify-content: center;
+    margin: 3px;
+}

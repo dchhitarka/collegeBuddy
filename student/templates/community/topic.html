@@ -1,0 +1,60 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{%block title%}Community Forum Topic{% endblock %}
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/community.css'%}">
+{% endblock %}
+{%block topbarTitle%}
+<div class="logo"><a href="{% url 'community' %}">Community Forum</a></div>
+{%endblock%}
+{% block body %}
+{% include 'community/forumheader.html' %}
+<div class="forum-main">
+    <div class="forum-topic">
+        <h1>{{topic.topic_name}}</h1>
+        <p>{{topic.topic_date}}</p>
+        <p>{{topic.topic_by}}</p>
+        <p>{{topic.topic_posts}}</p>
+        <p>{{topic.topic_desc}}</p>
+    </div>
+    
+    <!-- All threads on this forum -->
+    {% for post in posts %}
+    <div class="forum-thread">
+        <div class="thread-by">
+            {% if user.profile_img != '' %}
+                <img class="profile-img" src="{{user.profile_img}}" alt="PI">
+            {% else %}
+                <div class="profile-text thread-profile-text">{{post.post_by.first_name.0}}{{post.post_by.last_name.0}}</div>
+            {%endif%}
+            <h3 class="thread-user">{{post.post_by.username}}</h3>
+        </div>
+        <div class="thread-body">
+            <pre>{{post.post_content|safe}}</pre>
+        </div>
+    </div>
+    {%empty%}
+    <!-- No Posts -->
+    <div class="forum-thread">
+        <h1>No posts created Yet!</h1>
+        <p>Create a new Post?</p>
+    </div>
+    {% endfor %}
+    
+    <!-- Create new Post -->
+    <form class="new-post" method="POST">
+        {% csrf_token %}
+            <!--CKEditor Using installed Packages  -->
+        <div id="editor">
+            {{form.media}}
+            {%for field in form.visible_fields%}
+                <div class="post-content" style="height: 250px;">{{field}}</div>
+            {%endfor%}
+        </div>
+        <input type="submit" value="Comment">
+    </form>
+    
+</div>
+{% endblock %}
+{% block includeJS %}
+{% endblock %}

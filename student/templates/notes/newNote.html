@@ -1,0 +1,30 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+
+{% block title %}Create New Note{%endblock%}
+
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/notes.css'%}">
+{% endblock %}
+
+{%block topbarTitle%}
+    <div class="logo"><a href="{% url 'notes' %}">Notes</a></div>
+{%endblock%}
+
+{% block body %}
+    <form class="new-note" method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" id="title" placeholder="Title">
+            <!--CKEditor Using installed Packages  -->
+        <div id="editor">
+            {{form.media}}
+            {%for field in form.visible_fields%}
+                <div class="post-content">{{field}}</div>
+            {%endfor%}
+        </div>
+        <label for="color" id="labelColor">Color - 
+            <input type="color" name="color" id="color" value="#121212">
+        </label>
+        <input type="submit" value="Create" id='create'>
+    </form>
+{%endblock%}

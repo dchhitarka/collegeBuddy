@@ -1,0 +1,128 @@
+.main{
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    grid-template-columns: 1fr 250px;
+    grid-row-gap: 12px;
+    grid-template-areas: 
+        'forum-head forum-head'
+        'forum-main forum-aside';
+}
+.forum-head{
+    grid-area: forum-head;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.forum-main{
+    padding: 3px;
+    grid-area: forum-main;
+    min-height: 100vh;
+    overflow-y: hidden;
+}
+.forum-aside{
+    padding: 3px;
+    grid-area: forum-aside;
+    background-color: #121212;
+}
+
+/* Forum-Head */
+.forum-nav{
+    padding: 0;
+    margin: 0;
+    background-color: #121212;
+    /* width: 100%; */
+}
+.forum-nav-list{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-evenly;
+}
+    .forum-link{
+        font-size: 17px;
+        padding: 5px 7px;
+        margin: 0;
+    }
+    .forum-link:hover{
+        background-color: black;
+    }
+
+/* Forum-Main */
+/* Latest.html */
+.forum-cat{
+    padding: 7px;
+    font-size: 17px;
+}
+    .cat-name{
+        background-color: rgb(25, 0, 255);
+        color: white;
+        padding: 3px;
+        border-radius: 3px;
+    }
+    .topic-info{
+        background-color: #121212;
+        padding: 3px;
+        margin: 3px;
+    }
+    .topic-info:hover{
+        background-color: #701099;
+    }
+
+/* Topic.html */
+.forum-topic, .forum-thread{
+    background-color: #121212;
+    padding: 3px;  
+    margin: 3px;
+    border-radius: 7px;
+}
+.forum-thread{
+    margin-top: 15px;
+    padding: 0;
+}
+    .thread-by{
+        background-color: blue;
+        margin: 0;
+        padding: 3px;
+        display: flex;
+    }
+        .thread-profile-text, .thread-user{
+            margin: 3px;
+        }
+    .thread-body{
+        padding: 3px;
+    }
+/* textarea */
+.content{
+    background-color: black;
+    padding: .15em;
+    border-radius: 2px;
+    color: white;
+}
+
+/* Forum-Aside */
+.forum-stats{
+    color: blueviolet;
+}
+
+@media screen and (max-width: 767px){
+    .main{
+        grid-template-rows: 6vw 1fr 0.25fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            'forum-head'
+            'forum-main'
+            'forum-aside';
+    }
+    .forum-head{
+        background-color: #121212;
+    }
+    
+    .forum-nav-list{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    .forum-link{
+        font-size: 3.5vw;
+    }
+}

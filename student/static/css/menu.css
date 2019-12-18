@@ -1,0 +1,109 @@
+.option-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}   
+    .opt-heading{
+        font-size: 25px;
+        display: flex;
+        justify-content: start;
+    }
+    .opt-heading i:hover{
+        color: #03DAC2;
+    }
+    .opt-item{
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        margin: 5px;
+        width: 300px;
+        font-size: 22px;
+        cursor: pointer;
+        background-color: #121212;
+    }
+    .opt-item i{
+        padding-right: 7px;
+        margin: 5px;
+        color: white;
+    }
+    .opt-item span{
+        align-self: center;
+    }
+    .opt-item:hover{
+        background-color: blue;
+    }
+.opt-heading-manage{
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+}
+    /* General Input Restore Backup File */
+    #restore_file{
+        display: none;
+    }
+
+
+/* Manage Page */
+.manage-list{
+    margin: 50px 20%;
+}
+    .manage{
+        background-color: #121212;
+        border-radius: 7px;
+        color:  black;
+        margin: 5px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        color:  white;
+    }
+    .manage:hover{
+        background-color: blue;
+    }
+    .manage.heading{
+        font-size: 22px;
+        align-items: center;
+    }
+        .heading i{
+            align-self: center;
+            padding-top: 7px;
+        }
+
+    #dayname{
+        background: #121212;
+        outline: none;
+        border: none;
+        color: white;
+        margin: 1px auto;
+        padding: 3px;
+        width: 100%;
+        font-weight: 600;
+        font-size: 18px;
+    }
+        .taskValue{
+            outline: none;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: white;
+        }
+
+
+
+
+
+@media screen and (max-width: 767px) {
+    .manage-list{
+        width: 80%;
+        padding: 5px;
+        margin: 25px;
+    }
+    .manage{
+        flex-direction: column;
+    }
+    .heading{
+        flex-direction: row;
+    }
+}

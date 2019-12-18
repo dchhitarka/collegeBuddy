@@ -1,0 +1,27 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+
+{% block title %}Tasks{%endblock%}
+
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/notes.css'%}">
+{% endblock %}
+
+{%block topbarTitle%}
+    <div class="logo"><a href="{% url 'tasks' %}">Your Tasks</a></div>
+{%endblock%}
+{% block body %}
+    <div class="create-note">
+        <a href="{% url 'newTask' %}"><button class="new-note-button">Add</button></a>
+    </div>
+    <ul class="notes">
+    {%for task in tasks%}
+    <a href="{% url 'editTask' task.id %}">
+        <li class="note" style="background-color: {{task.color}}">
+            <div class="note-title">{{task.tasks}}</div><hr>
+            <div class="note-date">{{task.created_on}}</div>
+        </li>
+    </a>  
+    {%endfor%}
+    </ul>
+{%endblock%}

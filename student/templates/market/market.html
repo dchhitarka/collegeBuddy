@@ -1,0 +1,93 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+
+{% block title %}Welcome to Online Market{%endblock%}
+
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/market.css'%}">
+{% endblock %}
+
+{%block topbarTitle%}
+    <div class="topbar-title">
+        <div class="logo"><a href="{% url 'market' %}">Online Market</a></div>
+        <form id="search-form" class="search-form">
+            {% csrf_token %}
+            <input class="search-input" placeholder="Search Item..." type="search" name="search" id="search" required>
+            <button type="submit" class="submit-button"><i class="fa fa-search search-icon"></i></button>
+        </form>
+        <div class="extra-icons">
+            <abbr title="Your Orders"><i class="fas fa-shopping-bag"></i></abbr>
+            <abbr title="Your Notifications"><i class="far fa-bell"></i></abbr>
+            <abbr title="Your Cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-no">0</span>
+            </abbr>
+        </div>
+    </div>
+{%endblock%}
+
+{% block body %}
+    <!-- Search Bar for Mobile Devices -->
+    <div class="mobile-search">
+        <form id="search-form-mobile" class="search-form-mobile">
+            {% csrf_token %}
+            <input class="search-input" placeholder="Search Item..." type="search" name="search" id="search" required>
+            <button type="submit" class="submit-button"><i class="fa fa-search search-icon"></i></button>
+        </form>
+    </div>
+    <!-- Hot Corner -->
+    <section class="hot-corner">
+        <ul class="trending-list">
+            {% for image in images %} <!-- Loop -->
+            <a href="#">
+                <li class="trending-item fade">
+                    <h1 class="item-heading">NEW PRODUCT {{image}}</h1>
+                    <img src="{% static 'images/' %}{{image}}.jpg" class="item-img" alt="Hot-Item">
+                    <p class="item-desc">Latest Product. Limited Stock! Hurry</p>
+                </li>
+            </a>
+            {% endfor %} <!-- End Loop -->
+        </ul>
+        <!-- Arrow to change Hot Product -->
+        <div class="slide-arrow">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <!-- Dots -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span> 
+            <span class="dot" onclick="currentSlide(3)"></span> 
+            <span class="dot" onclick="currentSlide(4)"></span> 
+            <span class="dot" onclick="currentSlide(5)"></span> 
+        </div>
+    </section>
+
+    <!-- Category wise product displayed -->
+    <section class="cats">
+        <!-- The following loop will iterate over [r,a,n,g,e] 5 times. -->
+        {% for x in 'range' %}
+        <div class="category">
+            <div class="cat-info">
+                <h1 class="cat-name">Electronics</h1>
+                <button class="view-all">VIEW ALL</button>
+            </div>
+            <ul class="cat-list">
+                {% for image in images %} <!-- Same Here-->
+                <a href="#">
+                    <li class="cat-item">
+                        <h1 class="item-heading">NEW PRODUCT1</h1>
+                        <img src="{% static 'images/' %}{{image}}.jpg" class="item-img" width="150" height="150" alt="Hot-Item">
+                        <p class="item-desc">Latest Product. Limited Stock! Hurry</p>
+                    </li>
+                </a>
+                {% endfor %} <!-- Loop Ends Here -->
+            </ul> 
+        </div>
+        {% endfor %} <!-- Loop Ends Here -->
+    </section>
+{%endblock%}
+
+{% block includeJS%}
+<script src="{% static 'js/market.js' %}"></script>
+{% endblock %}

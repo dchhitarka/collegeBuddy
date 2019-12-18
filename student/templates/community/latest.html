@@ -1,0 +1,36 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+{% block title %}Community Forum{%endblock%}
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/community.css'%}">
+{% endblock %}
+{%block topbarTitle%}
+<div class="logo"><a href="{% url 'community' %}">Community Forum</a></div>
+{%endblock%}
+{% block body %}
+{% include 'community/forumheader.html' %}
+<div class="forum-main">
+{% for category in categories%}
+    <section class="forum-cat">
+        <div class="cat-name">{{category.cat_name}}</div>
+        <ul class="forum-topics">
+        {%for topic in topics%}
+            {%if topic.topic_cat.cat_name == category.cat_name %}
+            <div class="topic-box"> 
+                <div class="topic-info">
+                    <a href="{%url 'showTopic' topic.id%}"><li class="topic-name">{{topic.topic_name}}</li></a>
+                    <p>Posts - {{topic.topic_posts}}</p>
+                    <p>{{topic.topic_by}}</p>
+                    <p>Last Post By - </p>
+                </div>
+            </div>
+            {% endif %}  
+        {%endfor%}
+        </ul>
+    </section>
+{%endfor%}
+</div>
+<aside class="forum-aside">
+    <div class="forum-stats">Forum Statistics</div>
+</aside>
+{%endblock%}

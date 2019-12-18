@@ -1,0 +1,30 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+{% block title %}Login{%endblock%}
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/auth.css'%}">
+{% endblock %}
+{% block body %}
+<h2>Login to use your buddy!</h2>
+<form method="post" class="authForm">
+  {% csrf_token %}
+  {% for message in messages %}
+  <div class="message">
+    <p>{{message}}</p>
+  </div>
+  {%endfor%}
+  <div class="email">
+    <i class="fas fa-envelope"></i>
+    <input type="email" placeholder="Email" name="email" id="email" required>
+  </div>
+  <div class="pass">
+    <i class="fas fa-unlock"></i>
+    <input type="password" placeholder="Password" name="password" id="password" required>
+  </div>
+  <button type="submit" id="register">Login</button>
+  <div class="extra-links">
+    <a href="{%url 'register'%}"><span class="newUser">New User?</span></a>
+    <a href="{%url 'password_reset'%}"><span class="pw_reset">Forgot Your Password?</span></a>
+  </div>
+  </form>
+{%endblock%}

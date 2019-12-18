@@ -1,0 +1,23 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+
+{% block title %}Create New Task{%endblock%}
+
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/notes.css'%}">
+{% endblock %}
+
+{%block topbarTitle%}
+    <div class="logo"><a href="{% url 'tasks' %}">Your Tasks</a></div>
+{%endblock%}
+
+{% block body %}
+    <form class="new-note" method="POST">
+        {% csrf_token %}
+        <textarea name="task" id="task" placeholder="Task" rows="5" cols="20" value="{{task.tasks}}"></textarea>
+        <label for="color" id="labelColor">Color - 
+            <input type="color" name="color" id="color" value="#121212">
+        </label>
+        <input type="submit" value="Create" id='create'>
+    </form>
+{%endblock%}

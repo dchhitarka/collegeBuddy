@@ -1,0 +1,28 @@
+{% extends '../base.html'%}
+{%load staticfiles%}
+{% block title %}Community Forum{%endblock%}
+{%block linkCSS %}
+<link rel="stylesheet" href="{%static 'css/community.css'%}">
+{% endblock %}
+{%block topbarTitle%}
+<div class="logo"><a href="{% url 'community' %}">Community Forum - Create new Posts</a></div>
+{%endblock%}
+{% block body %}
+{% include 'community/forumheader.html' %}
+<div class="forum-main">
+    <form method="POST">
+        {% csrf_token %}
+       <input type="text" name="name" placeholder="Topic Name">
+       <input type="text" name="content" placeholder="Topic Content">
+       <select name="cat" id="cat">
+        {% for cat in cats %}
+            <option value="{{cat.cat_name}}">{{cat.cat_name}}</option>
+        {%endfor%}
+       </select>
+       <input type="submit" value="Create">
+    </form>
+</div>
+<aside class="forum-aside">
+    <div class="forum-stats">Forum Statistics</div>
+</aside>
+{%endblock%}

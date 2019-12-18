@@ -1,0 +1,18 @@
+{% extends '../base.html'%}
+{%load staticfiles %}
+{% block title %}Settings{% endblock %}
+{% block linkCSS %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% endblock %}
+{% block body %} 
+    <section class="options">
+        <ul class="option-list">
+            <li class="opt-item opt-heading">
+                <a href="{% url 'index' %}"><i class="fas fa-arrow-left"></i></a>
+                <span>Settings</span></li>
+            <a href="{% url 'general' %}"><li class="opt-item"><i class="fas fa-cog"></i><span>General</span></li></a>
+            <a href="{% url 'manage' %}"><li class="opt-item"><i class="fas fa-calendar-alt"></i>Manage Schedule</li></a>
+            <a onclick="alert('Work in Progress, Sorry for the inconvenience!')"><li class="opt-item"><i class="fas fa-fill"></i>Color Preference</li></a>
+        </ul>
+    </section>
+{% endblock %}
