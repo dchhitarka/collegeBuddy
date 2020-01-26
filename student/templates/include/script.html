@@ -22,12 +22,12 @@
 
             save_data: function(new_data) {
                 localStorage.setItem("config_data", JSON.stringify(new_data));
-                fetch(`http://127.0.0.1:8000/timetable/save?data=${JSON.stringify(new_data)}`)
-                .then(res => res.json())
-                .then(data => {
-                    config.data = JSON.parse(Data);
-                    alert("Timetable Updated Successfully! Refresh to see new Timetable.")
-                });
+                config.data = JSON.parse(localStorage.getItem("config_data"));
+                console.log('Fetching ...');
+                let scheduleData = localStorage.getItem('config_data');
+                window.location.replace(`http://localhost:8000/timetable/save?data=${scheduleData}`);
+                // This line is for production server
+                // window.location.replace(`http://dchhitarka.pythonanywhere.com/timetable/save?data=${scheduleData}`);
             },
 
             reset_data: function() {

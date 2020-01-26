@@ -94,6 +94,5 @@ const save_schedule = () => {
     
     scheduleData.timetable[dayIndex].schedule = newSchedule;    
     config.save_data(scheduleData);
-    alert("Changes saved! Refresh to apply changes.")
 }
 

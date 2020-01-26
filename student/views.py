@@ -66,11 +66,12 @@ def timetable(request):
     return render(request, 'timetable/manage.html')
 
 def timetableSave(request):
+    print(request.user)
     newData = request.GET.get('data')
     timetable = Timetable.objects.get(user=request.user)
     timetable.timetable = newData
     timetable.save()
-    return newData
+    return redirect('timetable');
 
 # Attendance Views
 def attendance(request):
