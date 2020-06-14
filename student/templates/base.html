@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="College Budddy, Django, Python, e-Commerce, Timetable, Community Forum, Notes, Tasks List, Attendace Manager, Dashboard, Profile">
-    <title>College Budy - {% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} - College Budy | One place for all your needs in college</title>
     
     <link rel="manifest" href="{% static 'js/manifest.json' %}">
     <!-- FontAwesome -->
@@ -14,22 +14,34 @@
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"> -->
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/topbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
     {% block linkCSS %}{% endblock %}
 
     <link rel="apple-touch-icon" href="{% static 'images/icon.png' %}">
     <link rel="icon" href="{% static 'images/icon.png' %}">
 </head>
 <body>
+    <!-- Topbar -->
+    <header>
+        {% include 'include/header.html' %}
+    </header>
     <!-- Side Bar -->
     {% include 'include/sidebar.html' %}
     
-    <!-- Top Bar -->
-    <div class="topbar">
-        <div class="menu head-cross" onclick="showSide()"><i class="fas fa-bars settings"></i></div>
-        {%block topbarTitle %}
-            <div class="logo"><a href="{% url 'index' %}">College Buddy</a></div>
-        {%endblock%}
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-icon"></div>
     </div>
+    
+    <!-- Top Bar -->
+    <!-- <div class="topbar">
+        <div class="menu head-cross" onclick="showSide()"><i class="fas fa-bars settings"></i></div>
+        {#block topbarTitle #}
+            
+            <div class="logo"><a href="{%if request.path == '/'%}{% url 'index' %}{%else%}{% url 'index' %}{%endif%}">College Buddy</a></div>
+        {#endblock#}
+    </div> -->
     
     <!-- Main Section -->
     <main class="main">
@@ -37,11 +49,10 @@
     </main>
     
     <!-- Footer -->
-    {% include 'include/footer.html'%}
-    
-    <!-- Loader -->
-    {% block loader %}{% endblock %}
-
+    <footer>
+        {% include 'include/footer.html'%}
+    </footer>
+        
     <!-- JS Files -->
     {% block customJS %}
         {% include 'include/script.html'%}

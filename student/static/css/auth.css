@@ -5,11 +5,14 @@ h2{
 .authForm{
     margin-top: 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
-    input, #register{
+    .email, .pass, #register{
+        position: relative;
+    }
+    input, #register button{
         background-color: #121212;
         border: 0;
         outline: none;
@@ -17,22 +20,10 @@ h2{
         padding: 5px;
         height: 35px;
         color: white;
-        /* width: 50%; */
         font-size: 18px;
         overflow: hidden;
     }
-    #register{
-        width: 56.5%;
-        cursor: pointer;
-    }
-    #register:hover{
-        background-color: violet;
-        color: black;
-    }
 
-    .email, .pass{
-        position: relative;
-    }
         .email input, .pass input{
             width: inherit;
             padding-left: 30px;
@@ -42,15 +33,31 @@ h2{
             top: 15px;
             left: 12px;
         }
+        #register{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            color: 
+        }
+        #register button{
+            width: 150px;
+            border-radius: 7px;
+            cursor: pointer;
+            background-color: violet;
+            color: black;
+        }
+        #register button:focus{
+            box-shadow: inset 0 0 5px 2px rgba(0,0,0,0.5);
+        }
     .extra-links{
         display: flex;
         color: violet;
         justify-content: space-between;
-        width: 50%;
+        width: 350px;
         cursor: pointer;
     }
     @media screen and (max-width: 767px){
-        input, #register{
+        input{
             width: 75%;
         }
         .extra-links{

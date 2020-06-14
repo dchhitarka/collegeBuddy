@@ -1,0 +1,41 @@
+/* Header(Sidebar) */
+.sidebar .navbar{
+    position: fixed;
+}
+.nav-list{
+    list-style: none;
+}
+    .nav-item{
+        display: flex;
+        padding: 5px;
+        width: 200px;
+        cursor: pointer;
+        align-items: center;
+    }
+    .nav-item i{
+        padding-right: 7px;
+        margin: auto 5px;
+        color: white;
+        border-radius: 50%;
+        padding: 5px;
+        margin-right: 12px;
+        background-color: #66042D;
+    }
+    .nav-item:hover{
+        border-radius: 5px;
+        background-color: black;
+    }
+@media screen and (max-width: 767px) {
+    .sidebar{
+        position: fixed;
+        left: -500px;
+        top: 0;
+        height: 100%;
+        width: 275px;
+        z-index: 2;
+        background-color: #121212;
+    }
+        .sidebar .navbar{
+            position: static;
+        }
+}    

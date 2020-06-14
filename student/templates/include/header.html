@@ -1,4 +1,28 @@
+{%load static%}
 <div class="topbar">
-    <div class="menu head-cross" onclick="showSide()"><i class="fas fa-bars settings"></i></div>
-    {%block topbarTitle %}{%endblock%}
+    <nav class="topnavbar">
+        <div class="leftpart">
+            <div class="menu head-cross" onclick="showSide()"><i class="fas fa-bars settings"></i></div>
+            <div class="logo">
+                <a href="{% url 'index' %}">COLLEGE BUDDY</a>
+            </div>
+        </div>
+        <div class="auth">
+        {%if user.is_authenticated%}
+            <div class="profile-desc"> 
+                <!-- <img src="{% static 'images/logo.png'%}" alt="COLLEGE BUDDY" width="200" height="35"> -->
+                <a href="{%url 'dashboard'%}" class="profile-link"><img src="{%static 'images/default-profile-picture.png'%}" alt="{{user.first_name}}" width="30" height="30"></a>
+            </div>
+        {%else%}
+            <a href="{%url 'login'%}" class="auth-link">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+            </a>
+            <a href="{%url 'register'%}" class="auth-link">
+                <i class="far fa-plus-square"></i>
+                <span>Join</span>
+            </a>
+        {%endif%}
+        </div>
+    </nav>
 </div>

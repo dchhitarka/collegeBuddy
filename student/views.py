@@ -10,19 +10,27 @@ from django.utils.html import format_html
 import json
 from django.contrib.auth.decorators import login_required
 
-
 def index(request):
-    if request.user.is_anonymous:
-        defaultUser = UserAccount.objects.get(email='default@user.com')
-        timetable   = Timetable.objects.get(user=defaultUser)
-        notes       = Notes.objects.filter(notes_by=defaultUser).order_by('-created_on')[:3]
-        tasks = Tasks.objects.filter(user=defaultUser).order_by('-created_on')[:3] 
-    else:
-        tasks = Tasks.objects.filter(user=request.user).order_by('-created_on')[:3]
-        notes = Notes.objects.filter(notes_by=request.user).order_by('-created_on')[:3]
-        timetable = Timetable.objects.get(user=request.user)
+    if request.user.is_anonymous is False:
+        return redirect('home')
+    return render(request, 'index.html')
+
+@login_required(login_url='login')
+def home(request):
+    tasks = Tasks.objects.filter(user=request.user).order_by('-created_on')[:3]
+    notes = Notes.objects.filter(notes_by=request.user).order_by('-created_on')[:3]
+    timetable = Timetable.objects.filter(user=request.user)
+    if timetable:
+        timetable = timetable[0]
+    print(timetable)
     topics = Topics.objects.all().order_by('-topic_date')[:3]
-    return render(request, 'index.html', {'timetable': timetable, 'notes': notes, 'topics': topics, 'tasks': tasks})
+    context = {
+        'timetable': timetable, 
+        'notes': notes, 
+        'topics': topics, 
+        'tasks': tasks
+    }
+    return render(request, 'home.html', context)
     
 # Authentication Views
 def register(request):
@@ -57,6 +65,7 @@ def loginView(request):
     return render(request, 'registration/login.html')
 
 # Profile Views
+@login_required(login_url='login')
 def dashboard(request):
     return render(request, 'profile/dashboard.html')
 
@@ -65,6 +74,7 @@ def dashboard(request):
 def timetable(request):
     return render(request, 'timetable/manage.html')
 
+@login_required(login_url='login')
 def timetableSave(request):
     print(request.user)
     newData = request.GET.get('data')
@@ -74,6 +84,7 @@ def timetableSave(request):
     return redirect('timetable');
 
 # Attendance Views
+@login_required(login_url='login')
 def attendance(request):
     pass
 
@@ -142,12 +153,14 @@ def editNote(request, pk):
     form = NotesForm(initial={'content': content})
     return render(request, 'notes/editNote.html', {'form': form, 'note': note}) 
 
+@login_required(login_url='login')
 def deleteNote(request, pk):
     note = Notes.objects.get(pk=pk)
     note.delete()
     return redirect('notes')
 
 # Settings Views
+@login_required(login_url='login')
 def settings(request):
     return render(request, 'settings/settings.html')
 
@@ -164,7 +177,7 @@ def community(request):
 
 # This view is for topic.html page which shows a particular thread
 def topic(request, pk):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_anonymous == False:
         topic = Topics.objects.get(pk=pk)
         post_content = request.POST.get('content')
         post_by = request.user

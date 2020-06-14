@@ -2,7 +2,7 @@ window.onload = function() {
     config.load_data();
     let d = new Date();
     let dayToday = d.getDay();
-    default_schedule(dayToday);
+    // default_schedule(dayToday);
 };
 
 let count = 0; //For counting number of times add bi=utton was clicked
@@ -14,7 +14,7 @@ const default_schedule = (dayToday)=>{
         let optionDay = document.querySelector('.monday')
         optionDay.setAttribute('selected', true);
         let dayObj = config.data.timetable[dayToday];
-        console.log(dayObj);
+        // console.log(dayObj);
         for(classObj of dayObj.schedule){
             manage.innerHTML +=
                 `<li class="manage task">

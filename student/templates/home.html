@@ -1,0 +1,90 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <section class="qod">
+        <blockquote class="quote"></blockquote>
+        <span class="quote-author"></span>
+    </section>  
+     
+    <section class="schedule">
+        <div class="sec-header">
+            <a href="{%url 'timetable'%}">Timetable</a>
+            <a href="{% url 'timetable' %}" class="manageLink">Edit Timetable</a>
+        </div>
+        <div class="week-bar">
+            <ul class="week" style="color: white;">
+                <li class="weekday mon" onclick="loadView('mon')">Mon</li>
+                <li class="weekday tue" onclick="loadView('tue')">Tue</li>
+                <li class="weekday wed" onclick="loadView('wed')">Wed</li>
+                <li class="weekday thu" onclick="loadView('thu')">Thu</li>
+                <li class="weekday fri" onclick="loadView('fri')">Fri</li>
+                <li class="weekday sat" onclick="loadView('sat')">Sat</li>
+            </ul>
+        </div>
+        <div class="view-schedule"></div>
+    </section>
+
+    <section class="task-list">
+        <div class="sec-header">
+            <a href="{%url 'tasks'%}">Tasks</a>
+            <a href="{% url 'newTask' %}" class="manageLink">Add Task</a>
+        </div>
+        {%if tasks%}
+        <ul class="tasks">
+            {%for task in tasks%}
+            <a href="{% url 'editTask' task.id %}">
+                <li class="task" style="background-color: {{task.color}}">
+                    <div class="task-body">{{task.tasks|safe}}</div>
+                    <div class="task-date">{{task.created_on}}</div>
+                </li>
+            </a>  
+            {%endfor%}
+        </ul>
+        {%else%}
+        <a href="{%url 'newTask'%}" class="class-value createNew">No task available. Create new Task</a>
+        {%endif%}
+    </section>
+
+    <section class="notes-list">
+        <div class="sec-header">
+            <a href="{%url 'notes'%}">Notes</a>
+            <a href="{% url 'newNote' %}" class="manageLink">Take Notes</a>
+        </div>
+        <ul class="notes">
+            {%for note in notes%}
+            <a href="{% url 'editNote' note.id %}">
+                <li class="note" style="background-color: {{note.color}}">
+                    <div class="note-title">{{note.title}}</div><hr>
+                    <div class="note-date">{{note.created_on}}</div>
+                    <div class="note-body">{{note.content|safe}}</div>
+                </li>
+            </a>  
+        {%endfor%}
+        </ul>
+    </section>
+
+    <section class="forum-list">
+        <div class="sec-header">
+            <a href="{%url 'community'%}">Community Forum</a>
+            <a href="{% url 'createTopic' %}" class="manageLink">Create Topic</a>
+        </div>
+        <ul class="forums">
+            {%for topic in topics%}
+            <a href="{% url 'showTopic' topic.id %}">
+                <div class="topic-info">
+                    <li class="topic-name">{{topic.topic_name}}</li> 
+                    <li>Posts - {{topic.topic_posts}}</li>
+                    <li>Author - {{topic.topic_by.username}}</li>
+                    <li>Last Post By - </li>
+                </div>
+            </a>  
+        {%endfor%}
+        </ul>
+    </section>
+{% endblock %} 
+{% block includeJS %}
+<script src="{% static 'js/index.js'%}"></script>
+{% endblock %}

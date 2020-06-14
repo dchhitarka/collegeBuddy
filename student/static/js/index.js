@@ -1,4 +1,5 @@
 window.onload = ()=>{
+    console.log("Loading");
     config.load_data();
 	let d = new Date();
     let dayToday = d.getDay();
@@ -42,8 +43,10 @@ const defaultView = (dayToday)=>{
         }
     }else{
         viewSchedule.innerHTML += 
-        `<div class="class-value showDisp" onclick="setDefaultData()">No data available! Show default?</div>`
+        `<a href="" class="class-value showDisp">No data available! Create New Timetable</a>`
     }
+    document.querySelector('.showDisp').setAttribute('href', '/timetable')
+    
     loader.style.display = 'none';
 }
 
@@ -85,6 +88,8 @@ const loadView = (day)=>{
 const showQuote = async ()=>{
     let quote = document.querySelector('.quote')
     let quoteAuthor = document.querySelector('.quote-author')
+    console.log("Fetching");
+    
     const res = await fetch('https://quotes.rest/qod')
     const resJSON = await res.json()
     quote.innerHTML = `"${resJSON.contents.quotes[0].quote}"`;

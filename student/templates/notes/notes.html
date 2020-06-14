@@ -18,9 +18,10 @@
     {%for note in notes%}
     <a href="{% url 'editNote' note.id %}">
         <li class="note" style="background-color: {{note.color}}">
-            <div class="note-title">{{note.title}}</div><hr>
-            <div class="note-date">{{note.created_on}}</div>
+            <div class="note-title">{{note.title}}</div>
             <div class="note-body">{{note.content|safe}}</div>
+            <hr>
+            <div class="note-date">{{note.created_on}}</div>
         </li>
     </a>  
     {%endfor%}

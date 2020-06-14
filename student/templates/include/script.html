@@ -11,19 +11,22 @@
                     let data = localStorage.getItem('config_data')
                     config.data = JSON.parse(data);
                 }
-                else{
+                else if(JSON.stringify({{timetable.timetable|safe}}) ==! null){
                     data = JSON.stringify({{timetable.timetable|safe}});
                     if (data != null || data != '') {
                         config.data = JSON.parse(data);
                         localStorage.setItem("config_data", JSON.stringify(config.data));
                     }
                 }
+                else{
+                    config.data = null
+                }
             },
 
             save_data: function(new_data) {
                 localStorage.setItem("config_data", JSON.stringify(new_data));
                 config.data = JSON.parse(localStorage.getItem("config_data"));
-                console.log('Fetching ...');
+                console.log('Saving ...');
                 let scheduleData = localStorage.getItem('config_data');
                 window.location.replace(`http://localhost:8000/timetable/save?data=${scheduleData}`);
                 // This line is for production server
@@ -32,6 +35,7 @@
 
             reset_data: function() {
                 localStorage.removeItem("config_data");
+                // Also, delete from server
             },
         } //Config Object
     

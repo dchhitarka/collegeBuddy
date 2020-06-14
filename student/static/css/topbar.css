@@ -1,0 +1,126 @@
+/* Topbar */
+.topnavbar{
+    z-index: 5;
+    /* margin-bottom: 300px; */
+    width: 100vw;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    background-color:#111111;
+    padding: 15px 25px;
+    height: 65px;
+}
+    .logo{
+        font-size: 25px;
+    }
+    .auth{
+        display: flex;
+        /* flex-direction: column; */
+        /* justify-content: flex-start; */
+    }
+        /* Login/Register Button */
+        .auth-link{
+            display: flex;
+            cursor: pointer;
+            font-size: 18px;
+            border: 1px solid #66042D;
+            padding: 3px;
+            width: 120px;
+            margin: 3px;
+            align-items: center;
+            border-radius: 3px;
+            color: rgba(255,255,255,0.87);
+            font-weight: 700;
+            background: none;
+            color: #66042D;
+            /* justify-content: center; */
+        }
+        .auth-link:hover{
+            background: #66042D;
+            color: whitesmoke;
+        }
+        .auth-link i{
+            padding: 3px;
+            padding-right: 7px;
+        }
+        /* User Name and Profile Picture */
+        .profile-desc{
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+        }
+            .profile-link img{
+                border-radius: 50%;
+            }
+    .menu{
+        border-radius: 3px;
+        padding: 3px 3px;
+        padding-bottom: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        display: none;
+    }
+    .menu i{
+        font-size: 21px;
+        align-self: center;
+        /* padding: 1px; */
+        padding-top: 3.5px;
+        margin: 1px;
+        /* padding-bottom: 0; */
+        /* margin-bottom: 0; */
+    }
+    .menu:hover{
+        /* background-color: black; */
+        color: #66042D;
+        transition: 0.4s;
+    }
+    .i-cross{
+        height: 35px;
+        border: none;
+        background-color: inherit;
+        overflow-y: hidden;
+    }
+    .fa-times{
+        padding: 4px;
+        padding-right: 5px;
+    }
+
+    .logoutButton{
+        color: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+    }
+    .logoutButton button{
+        background-color: #121212;
+        border-radius: 5px;
+        border: 1px solid #66042D;
+        color: #66042D;
+        cursor: pointer;
+        padding: 7px;
+        transition: 0.5s;
+    }
+    .logoutButton button:hover{
+        background-color: #66042D;
+        color: black;
+    }
+
+@media screen and (max-width: 767px) {
+    .topnavbar{
+        padding: 5px;
+        height: 50px;
+    }
+    .leftpart{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+    .menu{
+        display: block;
+    }
+    .logo{
+        padding-left: 15px;
+        font-size: 22px;
+    }
+}
