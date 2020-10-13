@@ -11,17 +11,27 @@
     <div class="logo"><a href="{% url 'tasks' %}">Your Tasks</a></div>
 {%endblock%}
 {% block body %}
-    <div class="create-note">
+    <!-- <div class="create-note">
         <a href="{% url 'newTask' %}"><button class="new-note-button">Add</button></a>
-    </div>
-    <ul class="notes">
+    </div> -->
+
     {%for task in tasks%}
-    <a href="{% url 'editTask' task.id %}">
-        <li class="note" style="background-color: {{task.color}}">
-            <div class="note-title">{{task.tasks}}</div><hr>
-            <div class="note-date">{{task.created_on}}</div>
-        </li>
-    </a>  
-    {%endfor%}
+    <ul class="tasks">
+        <a href="{% url 'editTask' task.id %}">
+            <li class="list-title" style="background-color: {{task.color}}">{{task.title}}</li>
+        </a>
+        {%if task.tasks|length != 0 %}
+            {%for item in task.tasks%}
+            <li class="task" style="background-color: {{task.color}}">
+                <input id="{{ forloop.counter0 }}" class="task-items-box" onchange="checkTaskLabel({{ forloop.counter0 }})" type="checkbox" name="task-value" value="{{item.task}}">
+                <label for="{{ forloop.counter0 }}" class="task-items">{{item.task}}</label>
+            </li>
+            {%endfor%}
+        {%else%}
+            <a href="{%url 'newTask'%}" class="task class-value createNew">No task available. Create new Task</a>
+        {%endif%}
     </ul>
+    <a href="{% url 'editTask' task.id %}">EDIT</a>  
+    {%endfor%}
+
 {%endblock%}

@@ -5,6 +5,9 @@
 
 {% block body %}
     <section class="qod">
+        <div class="sec-header">
+            <div>Quote of the Day</div>
+        </div>
         <blockquote class="quote"></blockquote>
         <span class="quote-author"></span>
     </section>  
@@ -16,12 +19,13 @@
         </div>
         <div class="week-bar">
             <ul class="week" style="color: white;">
-                <li class="weekday mon" onclick="loadView('mon')">Mon</li>
-                <li class="weekday tue" onclick="loadView('tue')">Tue</li>
-                <li class="weekday wed" onclick="loadView('wed')">Wed</li>
-                <li class="weekday thu" onclick="loadView('thu')">Thu</li>
-                <li class="weekday fri" onclick="loadView('fri')">Fri</li>
-                <li class="weekday sat" onclick="loadView('sat')">Sat</li>
+                <li class="weekday sun" onclick="showTimetable(timetable, 0)">Sun</li>
+                <li class="weekday mon" onclick="showTimetable(timetable, 1)">Mon</li>
+                <li class="weekday tue" onclick="showTimetable(timetable, 2)">Tue</li>
+                <li class="weekday wed" onclick="showTimetable(timetable, 3)">Wed</li>
+                <li class="weekday thu" onclick="showTimetable(timetable, 4)">Thu</li>
+                <li class="weekday fri" onclick="showTimetable(timetable, 5)">Fri</li>
+                <li class="weekday sat" onclick="showTimetable(timetable, 6)">Sat</li>
             </ul>
         </div>
         <div class="view-schedule"></div>
@@ -33,16 +37,23 @@
             <a href="{% url 'newTask' %}" class="manageLink">Add Task</a>
         </div>
         {%if tasks%}
+        {%for task in tasks%}
         <ul class="tasks">
-            {%for task in tasks%}
             <a href="{% url 'editTask' task.id %}">
+                <li class="list-title" style="background-color: {{task.color}}">{{task.title}}</li>
+            </a>
+            {%if task.tasks|length != 0 %}
+                {%for item in task.tasks%}
                 <li class="task" style="background-color: {{task.color}}">
-                    <div class="task-body">{{task.tasks|safe}}</div>
-                    <div class="task-date">{{task.created_on}}</div>
+                    <input id="{{ forloop.counter0 }}" class="task-items-box" onchange="checkTaskLabel({{ forloop.counter0 }})" type="checkbox" name="task-value" value="{{item.task}}">
+                    <label for="{{ forloop.counter0 }}" class="task-items">{{item.task}}</label>
                 </li>
-            </a>  
-            {%endfor%}
+                {%endfor%}
+            {%else%}
+                <a href="{%url 'newTask'%}" class="task class-value createNew">No task available. Create new Task</a>
+            {%endif%}
         </ul>
+        {%endfor%}
         {%else%}
         <a href="{%url 'newTask'%}" class="class-value createNew">No task available. Create new Task</a>
         {%endif%}
@@ -57,16 +68,21 @@
             {%for note in notes%}
             <a href="{% url 'editNote' note.id %}">
                 <li class="note" style="background-color: {{note.color}}">
-                    <div class="note-title">{{note.title}}</div><hr>
-                    <div class="note-date">{{note.created_on}}</div>
-                    <div class="note-body">{{note.content|safe}}</div>
+                    <div class="meta">
+                        <div class="note-title">{{note.title}}</div>
+                        <div class="note-date">{{note.created_on|date:'N j, Y'}}</div>
+                    </div>
+                    <hr>
+                    <div class="note-body">
+                        {{note.content|safe}}
+                    </div>
                 </li>
             </a>  
         {%endfor%}
         </ul>
     </section>
 
-    <section class="forum-list">
+    <!-- <section class="forum-list">
         <div class="sec-header">
             <a href="{%url 'community'%}">Community Forum</a>
             <a href="{% url 'createTopic' %}" class="manageLink">Create Topic</a>
@@ -83,8 +99,58 @@
             </a>  
         {%endfor%}
         </ul>
-    </section>
-{% endblock %} 
+    </section> -->
+
+{% endblock %}
+
 {% block includeJS %}
 <script src="{% static 'js/index.js'%}"></script>
+<script src="{% static 'js/timetable.js'%}"></script>
+<script>
+    let timetable = []
+    let taskList = []
+
+    {%for task in tasks%}
+        let items = {{task.tasks|safe}}
+        taskList.push(items)    
+    {%endfor%}
+
+    let taskLabels = document.querySelectorAll('.task-items');
+    let taskCheckBox = document.querySelectorAll('.task-items-box');
+
+    function initCheck(){
+        console.log(taskList)
+        taskList.map((items, index) => {
+            taskLabels.forEach((label, i) => {
+                if(items[i].status != "false"){
+                    label.classList.add("checked")
+                    taskCheckBox[i].checked = true
+                }
+                else{
+                    taskCheckBox[i].checked = false
+                    label.classList.remove("checked")
+                }
+            })
+    
+        })
+    }
+
+    function checkTaskLabel(i){
+        taskLabels[i].classList.toggle("checked");
+        items[i].status = !items[i].status
+    }
+
+    initCheck()
+
+</script>
+
+<script type="module">
+    import TimeTable from "{% static 'js/models/timetable.js'%}";
+    const parsedTimetable = {{timetable.timetable|safe}}
+    parsedTimetable.forEach(daily => {
+        timetable.push(new TimeTable(daily));
+    });
+    let dayToday = (new Date()).getDay();
+    showTimetable(timetable, dayToday);
+</script>
 {% endblock %}

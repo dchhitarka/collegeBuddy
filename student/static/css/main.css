@@ -39,13 +39,14 @@ body{
     display: block;
     /* background-color:#121212; */
     width: 100vw;
-    height: 65px;
+    height: 80px;
+    overflow-y: hidden !important;
 }
 .sidebar{
     grid-area: sidebar;
     display: block;
     height: 100%;
-    /* margin-top: 60px; */
+    /* margin-top: 15px; */
     /* background-color: #000; */
     color: white;
     padding: 7px;    
@@ -53,6 +54,7 @@ body{
 }    
 .main{
     margin: 7px 7%;
+    overflow-y: hidden;
     /* margin-top: 60px; */
     grid-area: main;
 }
@@ -74,6 +76,12 @@ section{
 }
 .section:hover{
     box-shadow: 0 0 7px 2px rgba(0,0,0,0.5);
+}
+.sec-header{
+    display: flex;
+    font-size: 22px;
+    border-bottom: 1px solid white;
+    justify-content: space-between;
 }
 /* Section Header Button */
 .manageLink{
@@ -101,25 +109,22 @@ section{
     margin-top: 10px;
     align-items: center;
     flex-direction: column;
-    padding: 5px;
+    padding: 7px;
+}
+.qod .sec-header{
+    width: 100%;
+    margin-bottom: 5px;
+    align-self: flex-start;
 }
 .quote{
+    font-style: oblique;
+    padding: 7px;
     display: flex;
     font-size: 15px;
     justify-content: center;
 }
 
 /* Timetable */
-.sec-header{
-    display: flex;
-    /*margin: 7px 7%;*/
-    font-size: 22px;
-    border-bottom: 1px solid white;
-    justify-content: space-between;
-}
-/* .sec-header a:hover{
-    color: #66042D;
-} */
 /* navbar for weekday */
 .week-bar{
     margin-bottom: 5px;
@@ -215,15 +220,45 @@ section{
     justify-content: center;
     flex-wrap: wrap;
 }
-    .note, .task{
+.tasks{
+    flex-direction: column;
+}
+    .task, .note{
         padding: 7px;
         margin: 7px;
-        width: 250px;
+        max-width: 350px;
         border-radius: 7px;
     }
     .task{
+        /* flex-direction: column; */
         display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+    }
+    .task .task-items{
+        padding-left: 8px;
+    }
+    .checked{
+        text-decoration: line-through;
+    }
+    /* .note{
+        wid
+    } */
+    .meta{
+        display: flex;
+        align-items: center;
         justify-content: space-between;
+    }
+    .note-title{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .note-date{
+        font-size: 14px;
+    }
+    .note-body{
+        padding: 8px;
+        font-size: 15px;
     }
 
 /* Community Forum */

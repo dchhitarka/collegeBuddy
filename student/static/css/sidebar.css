@@ -5,6 +5,10 @@
 .nav-list{
     list-style: none;
 }
+    .greetings{
+        padding: 0 5px 5px 15px;
+        /* margin-left: 1px; */
+    }
     .nav-item{
         display: flex;
         padding: 5px;

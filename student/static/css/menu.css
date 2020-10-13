@@ -11,7 +11,7 @@
         justify-content: start;
     }
     .opt-heading i:hover{
-        color: #03DAC2;
+        color: #66042D;
     }
     .opt-item{
         display: flex;
@@ -50,7 +50,7 @@
     margin: 50px 20%;
 }
     .manage{
-        background-color: #121212;
+        background-color: #353434;
         border-radius: 7px;
         color:  black;
         margin: 5px;
@@ -59,9 +59,9 @@
         justify-content: space-between;
         color:  white;
     }
-    .manage:hover{
-        background-color: blue;
-    }
+    /* .manage:hover{
+        background-color: #66042D;
+    } */
     .manage.heading{
         font-size: 22px;
         align-items: center;
@@ -72,7 +72,7 @@
         }
 
     #dayname{
-        background: #121212;
+        background: #353434;
         outline: none;
         border: none;
         color: white;
@@ -82,6 +82,10 @@
         font-weight: 600;
         font-size: 18px;
     }
+        .task{
+            background-color: #353434;
+            width: 100%;
+        }
         .taskValue{
             outline: none;
             background: none;

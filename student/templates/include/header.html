@@ -4,14 +4,16 @@
         <div class="leftpart">
             <div class="menu head-cross" onclick="showSide()"><i class="fas fa-bars settings"></i></div>
             <div class="logo">
+                <!-- <img src="{% static 'images/logo.png'%}" alt="COLLEGE BUDDY" width="200" height="35"> -->
                 <a href="{% url 'index' %}">COLLEGE BUDDY</a>
             </div>
         </div>
         <div class="auth">
         {%if user.is_authenticated%}
             <div class="profile-desc"> 
-                <!-- <img src="{% static 'images/logo.png'%}" alt="COLLEGE BUDDY" width="200" height="35"> -->
-                <a href="{%url 'dashboard'%}" class="profile-link"><img src="{%static 'images/default-profile-picture.png'%}" alt="{{user.first_name}}" width="30" height="30"></a>
+                <div class="profile-link">
+                    <img src="{%static 'images/default-profile-picture.png'%}" alt="{{user.first_name}}" width="30" height="30">
+                </div>
             </div>
         {%else%}
             <a href="{%url 'login'%}" class="auth-link">

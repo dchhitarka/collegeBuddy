@@ -30,17 +30,8 @@
     {% include 'include/sidebar.html' %}
     
     <!-- Loader -->
-    <div class="loader">
+    <!-- <div class="loader">
         <div class="loader-icon"></div>
-    </div>
-    
-    <!-- Top Bar -->
-    <!-- <div class="topbar">
-        <div class="menu head-cross" onclick="showSide()"><i class="fas fa-bars settings"></i></div>
-        {#block topbarTitle #}
-            
-            <div class="logo"><a href="{%if request.path == '/'%}{% url 'index' %}{%else%}{% url 'index' %}{%endif%}">College Buddy</a></div>
-        {#endblock#}
     </div> -->
     
     <!-- Main Section -->
@@ -54,9 +45,10 @@
     </footer>
         
     <!-- JS Files -->
-    {% block customJS %}
-        {% include 'include/script.html'%}
-    {% endblock %}
+    <script>
+        const csrftoken = '{{csrf_token}}'
+    </script>
+    <script src="{% static 'js/api.js' %}"></script>
     {% block includeJS %}{% endblock %}
 </body>
 </html>

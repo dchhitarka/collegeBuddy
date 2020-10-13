@@ -1,0 +1,52 @@
+{% extends '../base.html' %}
+{% block title %}Manage Your Timetable{% endblock %}
+{%load staticfiles%}
+{% block linkCSS %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% endblock %}
+{% block body %}
+    <section class="manage-option">
+        <ul class="manage-list">
+            <li class="heading manage">
+                <abbr title="Go Back"><a href="{% url 'home' %}"><i class="fas fa-arrow-left"></i></a></abbr>
+                <span class="menu-head">Edit Timetable</span>
+                <a class="save" style="cursor: pointer;" onclick="saveTimetable(timetable)">Save</a>
+            </li>
+            <li class="manage selectDay">
+                <select name="dayname" id="dayname" onchange="editTimetable(timetable, this.value)">
+                    <option selected hidden disabled>Choose Day</option>
+                    <option value="0" class="0 sundat">Sunday</option>
+                    <option value="1" class="1 monday">Monday</option>
+                    <option value="2" class="2 tuesday">Tuesday</option>
+                    <option value="3" class="3 wednesday">Wednesday</option>
+                    <option value="4" class="4 thurday">Thursday</option>
+                    <option value="5" class="5 friday">Friday</option>
+                    <option value="6" class="6 saturday">Saturday</option>
+                </select>
+            </li>
+            <div class="show-list"></div>
+        </ul>
+        <div class="buttonCSS">
+             <span class="showDisp addButton" onclick="addSub()">Add</span>
+             <span class="showDisp deleteButton" onclick="deleteLast()">Delete</i></span>    
+        </div>
+    </section>
+{% endblock %}
+{% block includeJS %}
+    <script src="{% static 'js/timetable.js' %}"></script>
+    <script>
+        let timetable = []
+    </script>
+    <script type="module">
+        import TimeTable from "{% static 'js/models/timetable.js'%}";
+        const parsedTimetable = {{timetable.timetable|safe}}
+        parsedTimetable.forEach(daily => {
+            timetable.push(new TimeTable(daily));
+        });
+        let dayToday = (new Date()).getDay();
+        editTimetable(timetable, dayToday)
+        document.querySelector(`#dayname`).value = dayToday
+    </script>
+    
+{% endblock %}
+    

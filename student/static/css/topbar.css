@@ -5,10 +5,14 @@
     width: 100vw;
     position: fixed;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color:#111111;
     padding: 15px 25px;
-    height: 65px;
+    height: 65px;    
+    overflow-y: hidden !important;
+
+    /* height: 100%; */
 }
     .logo{
         font-size: 25px;

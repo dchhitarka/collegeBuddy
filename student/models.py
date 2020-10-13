@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from ckeditor_uploader.fields import RichTextUploadingField
+from datetime import datetime
+# from dateutil.tz import tzlocal
+# from django.utils.timezone import now
 # from django_mysql.models import JSONField
 
 # Create your models here.
@@ -58,6 +61,7 @@ class UserAccount(AbstractBaseUser):
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'reg_no']
     
     objects = UserManager()
+    
     def __str__(self):
         return f"{self.email}"
 
@@ -70,24 +74,14 @@ class UserAccount(AbstractBaseUser):
 
 # Timetable model
 class Timetable(models.Model):
-    # SELECT_DAY = (
-    #     ('Mon', 'Modnday'),
-    #     ('Tue', 'Tuesday'),
-    #     ('Wed', 'Wednesday'),
-    #     ('Thu', 'Thursday'),
-    #     ('Fri', 'Friday'),
-    #     ('Sat', 'Saturday'),
-    # )
-    # day = models.CharField(max_length=5, choices=SELECT_DAY)
-    # start = models.TimeField()
-    # end = models.TimeField()
-    # subject = models.CharField(max_length=100)
-    # room = models.CharField(max_length=50)
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    timetable = models.TextField(default=None)
+    timetable = models.TextField(default="")
+    # JSONField(encoder="") 
 
     def __str__(self):
         return f"{self.user.username}"
+
+    objects = None
 
 # Models for Forum
 # Categories Model
@@ -95,6 +89,7 @@ class Categories(models.Model):
     cat_name = models.CharField(max_length=255, unique=True)
     cat_desc = models.CharField(max_length=255)
     cat_topics = models.IntegerField(default=0)
+    objects = None
 
     def __str__(self):
         return f"{self.cat_name}"
@@ -107,6 +102,7 @@ class Topics(models.Model):
     topic_cat   = models.ForeignKey(Categories, on_delete=models.CASCADE)
     topic_by    = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     topic_posts = models.IntegerField(default=0)
+    objects = None
 
     def __str__(self):
         return f"{self.topic_name}"
@@ -119,6 +115,7 @@ class Posts(models.Model):
     post_by         = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     post_upvote     = models.IntegerField(verbose_name='Upvotes', default=0)
     post_downvote   = models.IntegerField(verbose_name='Downvotes', default=0) 
+    objects = None
 
     def __str__(self):
         return f"Post by {self.post_by}"
@@ -129,12 +126,19 @@ class Notes(models.Model):
     created_on  = models.DateTimeField(auto_now_add=True)
     notes_by    = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     color       = models.CharField(max_length=255)
+    objects = None
 
     def __str__(self):
         return f"{self.title}"
 
 class Tasks(models.Model):
+    title = models.CharField(unique=True, null=False, max_length=100)
     tasks = models.TextField(default=None)
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     created_on  = models.DateTimeField(auto_now_add=True)
     color       = models.CharField(max_length=255, default='#121212')
+    objects = None
+
+    def __str__(self):
+        return self.title
+    
