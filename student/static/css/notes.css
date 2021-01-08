@@ -1,3 +1,8 @@
+.notes_sec{
+    display: flex;
+    flex-direction: column;
+    
+}   
 .create-note{
     display: flex;
     justify-content: center;

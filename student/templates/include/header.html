@@ -12,7 +12,8 @@
         {%if user.is_authenticated%}
             <div class="profile-desc"> 
                 <div class="profile-link">
-                    <img src="{%static 'images/default-profile-picture.png'%}" alt="{{user.first_name}}" width="30" height="30">
+                    <!-- static 'images/default-profile-picture.png' -->
+                    <img src="http://www.gravatar.com/avatar/?d=identicon" alt="{{user.first_name}}" width="30" height="30">
                 </div>
             </div>
         {%else%}

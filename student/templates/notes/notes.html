@@ -11,23 +11,28 @@
     <div class="logo"><a href="{% url 'notes' %}">Your Notes</a></div>
 {%endblock%}
 {% block body %}
-    <div class="create-note">
-        <a href="{% url 'newNote' %}"><button class="new-note-button manageLink">Create New Note</button></a>
-    </div>
-    <ul class="notes">
-    {%for note in notes%}
-    <a href="{% url 'editNote' note.id %}">
-        <li class="note" style="background-color: {{note.color}}">
-            <div class="meta">
-                <div class="note-title">{{note.title}}</div>
-                <div class="note-date">{{note.created_on|date:'N j, Y'}}</div>
+    <section class="notes_sec">
+        <div class="sec-header">
+            <div class="heading">Your Notes</div>
+            <div class="create-note">
+                <a href="{% url 'newNote' %}"><button class="new-note-button manageLink">Create New Note</button></a>
             </div>
-            <hr>
-            <div class="note-body">
-                {{note.content|safe}}
-            </div>
-        </li>
-    </a>
-    {%endfor%}
-    </ul>
+        </div>
+        <ul class="notes">
+        {%for note in notes%}
+        <a href="{% url 'editNote' note.id %}">
+            <li class="note" style="background-color: {{note.color}}">
+                <div class="meta">
+                    <div class="note-title">{{note.title}}</div>
+                    <div class="note-date">{{note.created_on|date:'N j, Y'}}</div>
+                </div>
+                <hr>
+                <div class="note-body">
+                    {{note.content|safe}}
+                </div>
+            </li>
+        </a>
+        {%endfor%}
+        </ul>
+    </section>
 {%endblock%}

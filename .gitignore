@@ -8,3 +8,5 @@ media
 .idea/*
 .vscode/*
 steps.txt
+migrations/
+__pycache__/

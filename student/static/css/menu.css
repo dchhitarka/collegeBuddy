@@ -48,6 +48,7 @@
 /* Manage Page */
 .manage-list{
     /* margin: 40px 5%; */
+    margin-top: 25px;
 }
     .manage{
         background-color: #353434;

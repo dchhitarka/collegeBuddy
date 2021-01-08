@@ -6,12 +6,12 @@
 {% endblock %}
 {% block body %}
     <section class="manage-option">
-        <ul class="manage-list">
-            <li class="heading manage">
-                <abbr title="Go Back"><a href="{% url 'home' %}"><i class="fas fa-arrow-left"></i></a></abbr>
-                <span class="menu-head">Edit Timetable</span>
+        <div class="sec-header">
+                <!-- <abbr title="Go Back"><a href="{% url 'home' %}"><i class="fas fa-arrow-left"></i></a></abbr> -->
+                <span class="menu-head">Your Timetable</span>
                 <a class="save manageLink" style="cursor: pointer;" onclick="saveTimetable(timetable)">Save</a>
-            </li>
+        </div>
+        <ul class="manage-list">
             <li class="manage selectDay">
                 <select name="dayname" id="dayname" onchange="editTimetable(timetable, this.value)">
                     <option selected hidden disabled>Choose Day</option>
