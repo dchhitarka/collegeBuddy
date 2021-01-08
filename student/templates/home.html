@@ -34,7 +34,7 @@
     <section class="task-list">
         <div class="sec-header">
             <a href="{%url 'tasks'%}">Tasks</a>
-            <a href="{% url 'newTask' %}" class="manageLink">Add Task</a>
+            <a href="{% url 'newTask' %}" class="manageLink">Manage Task</a>
         </div>
         {%if tasks%}
         {%for task in tasks%}
@@ -64,6 +64,7 @@
             <a href="{%url 'notes'%}">Notes</a>
             <a href="{% url 'newNote' %}" class="manageLink">Take Notes</a>
         </div>
+        {%if notes%}
         <ul class="notes">
             {%for note in notes%}
             <a href="{% url 'editNote' note.id %}">
@@ -80,6 +81,9 @@
             </a>  
         {%endfor%}
         </ul>
+        {%else%}
+        <a href="{%url 'newNote'%}" class="class-value createNew">No notes available. Create new Note</a>
+        {%endif%}
     </section>
 
     <!-- <section class="forum-list">

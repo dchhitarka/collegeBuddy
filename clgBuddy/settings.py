@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dchhitarka.pythonanywhere.com', ]
 
 INSTALLED_APPS = [
     'student',
-    'ckeditor',
+    # 'ckeditor',
     'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,16 +142,16 @@ STATIC_URL = '/static/'
     ##  CKEDITOR CONFIGURATION ##
 ####################################
  
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+# CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
  
-CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_IMAGE_BACKEND = "pillow"
+# CKEDITOR_UPLOAD_PATH = 'uploads/'
+# CKEDITOR_IMAGE_BACKEND = "pillow"
  
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': None,
-    },
-}
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': None,
+#     },
+# }
  
 ###################################
 

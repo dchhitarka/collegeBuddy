@@ -1,6 +1,7 @@
 from django import forms
 from .models import UserAccount, Posts, Notes
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.core import validators
+# from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class UserAccountCreation(forms.ModelForm):
     raw_password = forms.CharField(widget=forms.PasswordInput)
@@ -26,13 +27,14 @@ class UserAccountCreation(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorUploadingWidget())
+    content = forms.CharField(widget=forms.Textarea)
     class Meta():
         model = Posts
         fields = []
 
 class NotesForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorUploadingWidget())
+    title = forms.CharField(max_length=255, widget=forms.TextInput(attrs={"placeholder": "Title"}))
+    content = forms.CharField(widget=forms.Textarea(attrs={"rows": 15, "cols": 25, "placeholder": "Write something here..."}))
     class Meta():
         model = Notes
-        fields = []
+        fields = ['title', 'content']

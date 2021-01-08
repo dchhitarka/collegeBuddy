@@ -5,6 +5,7 @@
 
 {%block linkCSS %}
 <link rel="stylesheet" href="{%static 'css/notes.css'%}">
+<link rel="stylesheet" href="{%static 'css/tasks.css'%}">
 {% endblock %}
 
 {%block topbarTitle%}
@@ -14,6 +15,102 @@
     <!-- <div class="create-note">
         <a href="{% url 'newTask' %}"><button class="new-note-button">Add</button></a>
     </div> -->
+    <!-- <section> -->
+    <div class="todoapp stack-large">
+        <form>
+            <h2 class="label-wrapper">
+            <label htmlFor="new-todo-input" class="label__lg">
+                Your Tasks
+            </label>
+            </h2>
+            <input
+            type="text"
+            id="new-todo-input"
+            class="input input__lg"
+            name="text"
+            autoComplete="off"
+            />
+            <button type="submit" class="btn btn__primary btn__lg">
+            Add
+            </button>
+        </form>
+        <div class="filters btn-group stack-exception">
+            <button type="button" class="btn toggle-btn" aria-pressed="true">
+            <span class="visually-hidden">Show </span>
+            <span>all</span>
+            <span class="visually-hidden"> tasks</span>
+            </button>
+            <button type="button" class="btn toggle-btn" aria-pressed="false">
+            <span class="visually-hidden">Show </span>
+            <span>Active</span>
+            <span class="visually-hidden"> tasks</span>
+            </button>
+            <button type="button" class="btn toggle-btn" aria-pressed="false">
+            <span class="visually-hidden">Show </span>
+            <span>Completed</span>
+            <span class="visually-hidden"> tasks</span>
+            </button>
+        </div>
+        <h2 id="list-heading">
+            3 tasks remaining
+        </h2>
+        <ul
+            role="list"
+            class="todo-list stack-large stack-exception"
+            aria-labelledby="list-heading"
+        >
+            <li class="todo stack-small">
+            <div class="c-cb">
+                <input id="todo-0" type="checkbox" defaultChecked={true} />
+                <label class="todo-label" htmlFor="todo-0">
+                Eat
+                </label>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn">
+                Edit <span class="visually-hidden">Eat</span>
+                </button>
+                <button type="button" class="btn btn__danger">
+                Delete <span class="visually-hidden">Eat</span>
+                </button>
+            </div>
+            </li>
+            <li class="todo stack-small">
+            <div class="c-cb">
+                <input id="todo-1" type="checkbox" />
+                <label class="todo-label" htmlFor="todo-1">
+                Sleep
+                </label>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn">
+                Edit <span class="visually-hidden">Sleep</span>
+                </button>
+                <button type="button" class="btn btn__danger">
+                Delete <span class="visually-hidden">Sleep</span>
+                </button>
+            </div>
+            </li>
+            <li class="todo stack-small">
+            <div class="c-cb">
+                <input id="todo-2" type="checkbox" />
+                <label class="todo-label" htmlFor="todo-2">
+                Repeat
+                </label>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn">
+                Edit <span class="visually-hidden">Repeat</span>
+                </button>
+                <button type="button" class="btn btn__danger">
+                Delete <span class="visually-hidden">Repeat</span>
+                </button>
+            </div>
+            </li>
+        </ul>
+    </div>
+    <!-- </section> -->
+
 
     {%for task in tasks%}
     <ul class="tasks">

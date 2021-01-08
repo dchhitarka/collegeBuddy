@@ -12,19 +12,18 @@
 {%endblock%}
 
 {% block body %}
-    <form class="new-note" method="POST">
-        {% csrf_token %}
-        <input type="text" name="title" id="title" placeholder="Title">
-            <!--CKEditor Using installed Packages  -->
-        <div id="editor">
+    <section>
+        <form class="new-note" method="POST">
+            {% csrf_token %}
+            <!-- <input type="text" name="title" id="title" placeholder="Title"> -->
             {{form.media}}
             {%for field in form.visible_fields%}
-                <div class="post-content">{{field}}</div>
+                    {{field}}
             {%endfor%}
-        </div>
-        <label for="color" id="labelColor">Color - 
-            <input type="color" name="color" id="color" value="#121212">
-        </label>
-        <input type="submit" value="Create" id='create'>
-    </form>
+            <label for="color" id="labelColor">Color
+                <input type="color" name="color" id="color" value="#121212">
+            </label>
+            <input type="submit" value="Create" id='create' class="manageLink">
+        </form>
+    </section>
 {%endblock%}

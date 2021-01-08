@@ -3,15 +3,11 @@
     justify-content: center;
 }
     .new-note-button{
-        border: 1px solid blue;
-        padding: 5px;
+        border: none;
+        padding: 7px;
         border-radius: 3px;
-        background: none;
-        color: blue;
-    }
-    .new-note-button:hover{
-        background-color: blue;
-        color: white;
+        outline: none;
+        cursor: pointer;
     }
 
 .notes{
@@ -25,7 +21,7 @@
         padding: 7px;
         margin: 7px;
         border-radius: 3px;
-        width: 350px;
+        width: 375px;
         cursor: pointer; 
         transition: transform .2s;
     }
@@ -38,24 +34,32 @@
 .new-note{
     display: flex;
     flex-direction: column;
-    width: 75%;
+    /* width: 75%; */
     justify-content: center;
-    margin: auto;
+    margin: 10px;
 }
-    #title{
+    #id_title{
         color: white;
-        background: #121212;
+        background: #353535;
         border: none;
         border-radius: 3px;
         padding: 5px;
         margin-bottom: 5px;
         outline: none;
         font-size: 17px;
+        padding: 7px;
+        border-radius: 7px;
     }
-    .post-content{
-        overflow-x: scroll;
-        background-color: #121212;
-        text-align: center;
+    #id_content{
+        width: 100%;
+        border: none;
+        background-color: #333333;
+        color: white;
+        padding: 7px;
+        outline: none;
+        border-radius: 7px;
+        overflow-x: hidden;
+        resize: vertical;
     }
     #labelColor{
         width: 100%;

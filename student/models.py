@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from ckeditor_uploader.fields import RichTextUploadingField
+# from ckeditor_uploader.fields import RichTextUploadingField
 from datetime import datetime
 # from dateutil.tz import tzlocal
 # from django.utils.timezone import now
@@ -109,7 +109,7 @@ class Topics(models.Model):
 
 # Posts(Replies) on a topic
 class Posts(models.Model):
-    post_content    = RichTextUploadingField()
+    post_content    = models.TextField()
     post_date       = models.DateTimeField(auto_now_add=True)
     post_topic      = models.ForeignKey(Topics, on_delete=models.CASCADE)
     post_by         = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
@@ -122,7 +122,7 @@ class Posts(models.Model):
 
 class Notes(models.Model):
     title       = models.CharField(max_length=255)
-    content     = RichTextUploadingField()
+    content     = models.TextField()
     created_on  = models.DateTimeField(auto_now_add=True)
     notes_by    = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     color       = models.CharField(max_length=255)

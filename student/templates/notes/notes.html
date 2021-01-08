@@ -12,18 +12,22 @@
 {%endblock%}
 {% block body %}
     <div class="create-note">
-        <a href="{% url 'newNote' %}"><button class="new-note-button">Create New Note</button></a>
+        <a href="{% url 'newNote' %}"><button class="new-note-button manageLink">Create New Note</button></a>
     </div>
     <ul class="notes">
     {%for note in notes%}
     <a href="{% url 'editNote' note.id %}">
         <li class="note" style="background-color: {{note.color}}">
-            <div class="note-title">{{note.title}}</div>
-            <div class="note-body">{{note.content|safe}}</div>
+            <div class="meta">
+                <div class="note-title">{{note.title}}</div>
+                <div class="note-date">{{note.created_on|date:'N j, Y'}}</div>
+            </div>
             <hr>
-            <div class="note-date">{{note.created_on}}</div>
+            <div class="note-body">
+                {{note.content|safe}}
+            </div>
         </li>
-    </a>  
+    </a>
     {%endfor%}
     </ul>
 {%endblock%}

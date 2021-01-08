@@ -18,8 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('student.urls')),
-    # path('user/', include('student.urls')),
     path('user/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    # path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

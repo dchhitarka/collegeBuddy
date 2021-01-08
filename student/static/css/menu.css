@@ -47,7 +47,7 @@
 
 /* Manage Page */
 .manage-list{
-    margin: 50px 20%;
+    /* margin: 40px 5%; */
 }
     .manage{
         background-color: #353434;
@@ -65,6 +65,7 @@
     .manage.heading{
         font-size: 22px;
         align-items: center;
+        background-color: #111111;
     }
         .heading i{
             align-self: center;
@@ -82,10 +83,10 @@
         font-weight: 600;
         font-size: 18px;
     }
-        .task{
+        /* .task{
             background-color: #353434;
             width: 100%;
-        }
+        } */
         .taskValue{
             outline: none;
             background: none;

@@ -10,7 +10,7 @@
             <li class="heading manage">
                 <abbr title="Go Back"><a href="{% url 'home' %}"><i class="fas fa-arrow-left"></i></a></abbr>
                 <span class="menu-head">Edit Timetable</span>
-                <a class="save" style="cursor: pointer;" onclick="saveTimetable(timetable)">Save</a>
+                <a class="save manageLink" style="cursor: pointer;" onclick="saveTimetable(timetable)">Save</a>
             </li>
             <li class="manage selectDay">
                 <select name="dayname" id="dayname" onchange="editTimetable(timetable, this.value)">
@@ -40,9 +40,13 @@
     <script type="module">
         import TimeTable from "{% static 'js/models/timetable.js'%}";
         const parsedTimetable = {{timetable.timetable|safe}}
-        parsedTimetable.forEach(daily => {
+        for(let i = 0; i < 7; i++){
+            let daily = parsedTimetable[i] ?? {day: i}
             timetable.push(new TimeTable(daily));
-        });
+        }
+        // parsedTimetable.forEach(daily => {
+        //         timetable.push(new TimeTable(daily));
+        // });
         let dayToday = (new Date()).getDay();
         editTimetable(timetable, dayToday)
         document.querySelector(`#dayname`).value = dayToday

@@ -15,9 +15,9 @@ const saveTimetableApi = async (timetable) => {
                                 } 
                             )
         let data = await res.json()
-        console.log(data)
+        alert(data.msg)
     }
     catch (error){
-        console.log(error.message)
+        alert(error.message)
     }    
 }

@@ -3,8 +3,8 @@ class TimeTable{
     subjects = []
 
     constructor(timetable){
-        this.day = timetable.day;
-        this.subjects = timetable.subjects;
+        this.day = timetable?.day ?? null;
+        this.subjects = timetable?.subjects ?? [];
     }
 }
 

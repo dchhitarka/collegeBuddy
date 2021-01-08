@@ -197,7 +197,10 @@ section{
     cursor: pointer;
     margin: 15px auto;
 }
-.showDisp:hover, .createNew:hover{
+.createNew{
+    border: 1px solid white;
+}
+.showDisp:hover{
     color:  #66042D;
     background-color: black;
     border: 1px solid #66042D;
@@ -226,7 +229,7 @@ section{
     .task, .note{
         padding: 7px;
         margin: 7px;
-        max-width: 350px;
+        width: 375px;
         border-radius: 7px;
     }
     .task{
